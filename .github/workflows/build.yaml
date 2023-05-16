@@ -1,8 +1,8 @@
 name: Test
 
 on:
-  pull_request:
-    branches: [master]
+  push:
+    branches: [main]
 
 jobs:
   test:
@@ -10,13 +10,14 @@ jobs:
     strategy:
       matrix:
         animal: [cat, dog, bird]
-        include:
-          - color: blue
-            name: alex
-          - color: green
-            name: bob
-          - color: red
-            name: charlie
+        config:
+          - name: alex
+            color: blue
+          - name: alex
+            color: red
+          - name: bob
+            color: orange
+        
 
     steps:
-      - run: echo animal - ${{ matrix.animal }}, color - ${{ matrix.color }}, name - ${{ matrix.name }}
+      - run: echo animal - ${{ matrix.animal }}, color - ${{ matrix.config.color }}, name - ${{ matrix.config.name }}
