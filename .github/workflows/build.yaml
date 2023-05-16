@@ -1,0 +1,22 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        animal: [cat, dog, bird]
+        include:
+          - color: blue
+            name: alex
+          - color: green
+            name: bob
+          - color: red
+            name: charlie
+
+    steps:
+      - run: echo animal - ${{ matrix.animal }}, color - ${{ matrix.color }}, name - ${{ matrix.name }}
